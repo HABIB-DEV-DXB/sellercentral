@@ -1,0 +1,174 @@
+/*
+ * Centralized Glassmorphism Styles for Barakath Marketplace
+ * This stylesheet defines all global styles and brand identity.
+ */
+
+/* =======================================================
+   1. Glassmorphism Variables & Colors 🎨
+   ======================================================= */
+:root {
+    /* Color Palette derived from Barakath Logo */
+    --barakath-orange: #F5A623; /* Main 'Barakath' text color */
+    --barakath-green: #4CAF50;  /* 'B' and tagline green */
+    --barakath-green-dark: #388E3C; /* Darker green for hover states */
+    --barakath-text-dark: #34495E; /* Dark blue-grey for main text */
+    --barakath-text-light: #7F8C8D; /* Lighter grey for secondary text */
+
+    /* Glassmorphism Backgrounds (adjusted for slight warmth to match logo) */
+    --glass-background-start: rgba(255, 255, 255, 0.6); /* Slightly more opaque */
+    --glass-background-end: rgba(255, 255, 255, 0.4);   /* Slightly more opaque */
+    --glass-border-color: rgba(255, 255, 255, 0.7);     /* Slightly more opaque */
+    
+    /* Primary Color for Action Buttons (Now Barakath Green) */
+    --primary-color: var(--barakath-green);
+    --primary-color-hover: var(--barakath-green-dark);
+
+    /* Text & Highlight Colors (aligned with branding) */
+    --text-color: var(--barakath-text-dark);
+    --secondary-text-color: var(--barakath-text-light);
+    --highlight-color: var(--barakath-orange); /* Using orange for accents/highlights */
+
+    /* Shadows for Layering & Depth (slightly softer) */
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08); /* Softer, wider light shadow */
+    --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.15); /* Softer, wider heavy shadow */
+    
+    /* Backdrop Blur */
+    --backdrop-blur: blur(12px); /* Slightly stronger blur for depth */
+
+    /* Error & Success Colors (standard, but ensuring good contrast) */
+    --error-color: #D32F2F; /* More standard red */
+    --error-background-start: rgba(211, 47, 47, 0.5);
+    --error-background-end: rgba(211, 47, 47, 0.3);
+    --success-color: #388E3C; /* More standard green */
+    --success-background-start: rgba(56, 142, 60, 0.5);
+    --success-background-end: rgba(56, 142, 60, 0.3);
+}
+
+/* =======================================================
+   2. Global Styles & Typography ✍️
+   ======================================================= */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif; /* Changed to Inter for a modern, professional look */
+    color: var(--text-color);
+    line-height: 1.6;
+    
+    /* A very light, professional gradient background, slightly warmer */
+    background: linear-gradient(135deg, #ECF0F1 0%, #DDEEEE 100%);
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 600; /* Slightly bolder headings */
+    color: var(--text-color); /* Ensure headings use main text color */
+}
+
+/* Container for page content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1; /* Ensures content is above the background */
+}
+
+.glass-card {
+    background: linear-gradient(
+        135deg,
+        var(--glass-background-start) 0%,
+        var(--glass-background-end) 100%
+    );
+    backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border-color);
+    box-shadow: var(--shadow-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: var(--text-color);
+    transition: box-shadow 0.3s ease-in-out;
+    position: relative;
+    z-index: 2; /* Layered interface */
+}
+
+.glass-card:hover {
+    box-shadow: var(--shadow-heavy);
+}
+
+.glass-button {
+    display: inline-block;
+    padding: 10px 20px; /* Slightly more padding */
+    border: none;
+    border-radius: 8px; /* Slightly more rounded */
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Softer border for buttons */
+    backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--shadow-light);
+    text-decoration: none;
+}
+
+.glass-button:hover {
+    background-color: var(--primary-color-hover);
+    transform: translateY(-3px); /* Slightly more lift effect on hover */
+    box-shadow: var(--shadow-heavy);
+}
+
+.glass-button:active {
+    transform: translateY(0); /* Subtle "press" effect */
+    box-shadow: var(--shadow-light); /* Reset shadow on active */
+}
+
+/* Notification Box Styles */
+.notification-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: linear-gradient(
+        135deg,
+        var(--error-background-start) 0%,
+        var(--error-background-end) 100%
+    );
+    backdrop-filter: var(--backdrop-blur);
+    border: 1px solid rgba(220, 53, 69, 0.7);
+    border-radius: 12px;
+    box-shadow: var(--shadow-heavy);
+    color: white; /* Text color for the error message */
+    font-weight: bold;
+    z-index: 1000; /* Ensure it's on top of everything */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50px); /* Start slightly above and move down */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0.5s ease-out;
+    min-width: 250px;
+    text-align: center;
+}
+
+.notification-box.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.notification-box.success {
+    background: linear-gradient(
+        135deg,
+        var(--success-background-start) 0%,
+        var(--success-background-end) 100%
+    );
+    border: 1px solid rgba(40, 167, 69, 0.7);
+}
+
+/* Inline Error Message Style */
+.error-message {
+    color: var(--error-color); /* Uses the defined error color */
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: block; /* Ensures it takes full width */
+    font-weight: 600; /* Slightly bolder for visibility */
+}

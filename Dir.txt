@@ -1,0 +1,15 @@
+/sellers.yourplatform.com/
+├── public/
+│   ├── .htaccess                                <-- URL routing
+│   └── index.php                                <-- Main entry point
+├── core/
+│   ├── controllers/
+│   │   └── SellerController.php                 <-- Logic for seller dashboard
+│   ├── models/
+│   │   └── SellerModel.php                      <-- Database interaction for seller data
+│   └── views/
+│       └── seller_dashboard_view.php            <-- The main dashboard view
+├── includes/
+│   └── database.php                             <-- Database connection class
+└── config/
+    └── config.php                               <-- Sensitive database credentials

@@ -1,0 +1,12 @@
+# Turn on the rewrite engine
+RewriteEngine On
+
+# Set the base directory for rewriting
+RewriteBase /
+
+# If the requested file or directory exists, skip the rewrite rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other requests to index.php, passing the path as a query parameter
+RewriteRule ^(.*)$ index.php?path=$1 [NC,L,QSA]
